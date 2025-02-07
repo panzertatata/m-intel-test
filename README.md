@@ -24,56 +24,56 @@
   remaining คือ จำนวนคงเหลือ<br/>
 
   **Example Response**:<br/>
-    - **Http status code**: 200<br/>
-    กรณีที่สร้างเสร็จสมบูรณ์จะ response ข้อมูล book ที่ถูกสร้างทั้งหมดออกมา
-    ```
-    [
-      {
-          "title": "mockTitle9",
-          "genre": "mockGenre2",
-          "author": "mockA2",
-          "publicationYear": "1999",
-          "price": 200,
-          "remaining": 1,
-          "id": 7
-      }
-    ]
-    ```
-    - **Http status code**: 400<br/>
-    กรณีที่ส่ง body ที่มี format ผิด
-    ```
+  - **Http status code**: 200<br/>
+  กรณีที่สร้างเสร็จสมบูรณ์จะ response ข้อมูล book ที่ถูกสร้างทั้งหมดออกมา
+  ```
+  [
     {
-      "statusCode": 400,
-      "response": {
-          "message": "Invalid Payload",
-          "error": "Bad Request",
-          "statusCode": 400
-      },
-      "timestamp": "2025-02-07T08:24:09.467Z"
+        "title": "mockTitle9",
+        "genre": "mockGenre2",
+        "author": "mockA2",
+        "publicationYear": "1999",
+        "price": 200,
+        "remaining": 1,
+        "id": 7
     }
-    ```
-    - **Http status code**: 409<br/> 
-    กรณีที่เจอซ้ำใน database จะ response ข้อมูล book ที่อยู่ใน database ที่ซ้ำออกมา
-    ```
-    {
-      "statusCode": 409,
-      "response": {
-          "message": "book(s) have been created.",
-          "book": [
-              {
-                  "id": 7,
-                  "title": "mockTitle9",
-                  "genre": "mockGenre2",
-                  "author": "mockA2",
-                  "publicationYear": "1999",
-                  "price": 200,
-                  "remaining": 1
-              }
-          ]
-      },
-      "timestamp": "2025-02-07T07:00:06.712Z"
-    }
-    ```
+  ]
+  ```
+  - **Http status code**: 400<br/>
+  กรณีที่ส่ง body ที่มี format ผิด
+  ```
+  {
+    "statusCode": 400,
+    "response": {
+        "message": "Invalid Payload",
+        "error": "Bad Request",
+        "statusCode": 400
+    },
+    "timestamp": "2025-02-07T08:24:09.467Z"
+  }
+  ```
+  - **Http status code**: 409<br/> 
+  กรณีที่เจอซ้ำใน database จะ response ข้อมูล book ที่อยู่ใน database ที่ซ้ำออกมา
+  ```
+  {
+    "statusCode": 409,
+    "response": {
+        "message": "book(s) have been created.",
+        "book": [
+            {
+                "id": 7,
+                "title": "mockTitle9",
+                "genre": "mockGenre2",
+                "author": "mockA2",
+                "publicationYear": "1999",
+                "price": 200,
+                "remaining": 1
+            }
+        ]
+    },
+    "timestamp": "2025-02-07T07:00:06.712Z"
+  }
+  ```
 
 ## Update Book API
   api เส้นนี้มีไว้ update book ที่มีอยู่แล้วใน database ซึ่งจะใช้ id ในการค้นหาข้แมูลที่จะ update หากไม่มีจะโชว์ error ถ้าหากมีจะทำการ update book นั้น
