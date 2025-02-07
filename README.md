@@ -227,36 +227,36 @@
   }
   ```
   api เส้นนี้จะรับเพียง id เท่านั้นและจะมีการเช็คว่าหากมี id ที่ส่งเข้ามาอยู่ใน database จะทำการลบถ้าไม่มีจะโชว์ error
-    **Example Response**:<br/>
-    - **Http status code**: 200<br/>
-    กรณีที่ลบ book สำเร็จ
-    ```
-    {
-      "raw": [],
-      "affected": 1
-    }
-    ```
-    - **Http status code**: 400<br/>
-    กรณีที่ส่ง body ผิด format 
-    ```
-    {
-      "statusCode": 400,
-      "response": {
-          "message": "Invalid Payload",
-          "error": "Bad Request",
-          "statusCode": 400
-      },
-      "timestamp": "2025-02-07T08:51:18.358Z"
-    }
-    ```
-    กรณีทีหา book ไม่เจอ
-    ```
-    {
-      "statusCode": 404,
-      "response": {
-        "message": "book not found",
-        "id": 200
-      },
-      "timestamp": "2025-02-07T09:02:25.477Z"
-    }
-    ```
+  **Example Response**:<br/>
+  - **Http status code**: 200<br/>
+  กรณีที่ลบ book สำเร็จ
+  ```
+  {
+    "raw": [],
+    "affected": 1
+  }
+  ```
+  - **Http status code**: 400<br/>
+  กรณีที่ส่ง body ผิด format 
+  ```
+  {
+    "statusCode": 400,
+    "response": {
+        "message": "Invalid Payload",
+        "error": "Bad Request",
+        "statusCode": 400
+    },
+    "timestamp": "2025-02-07T08:51:18.358Z"
+  }
+  ```
+  กรณีทีหา book ไม่เจอ
+  ```
+  {
+    "statusCode": 404,
+    "response": {
+      "message": "book not found",
+      "id": 200
+    },
+    "timestamp": "2025-02-07T09:02:25.477Z"
+  }
+  ```
