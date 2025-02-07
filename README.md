@@ -97,8 +97,8 @@
   operator ที่ support มี 'add' , 'remove' , 'replace'<br/>
     - การ add เป็นการเพิ่มจากเดิม<br/>
     - การ remove เป็นการลบจากเดิม<br/>
-    >**NOTE**: หาก remove แล้ว remaining เหลือน้อยกว่า 0 จะ error บอกว่า book ไม่พอ
-    >
+  >**NOTE**: หาก remove แล้ว remaining เหลือน้อยกว่า 0 จะ error บอกว่า book ไม่พอ
+  >
     - การ replace เป็นการแทนที่ของเก่า<br/>
 
   **Example Response**:<br/>
