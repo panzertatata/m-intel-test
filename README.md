@@ -101,55 +101,55 @@
   >**NOTE**: หาก remove แล้ว remaining เหลือน้อยกว่า 0 จะ error บอกว่า book ไม่พอ
   >
   **Example Response**:<br/>
-    - **Http status code**: 200<br/>
-    กรณีที่ update เสร็จสิ้นจะ response ข้อมูล book ที่ถูก update ออกมา<br/>
-    ```
-    {
-        "title": "mockTitle9",
-        "genre": "mockGenre2",
-        "author": "mockA2",
-        "publicationYear": "1999",
-        "price": 200,
-        "remaining": 1,
-        "id": 7
-    }
-    ```
-    - **Http status code**: 404<br/>
-    กรณีที่หา book ที่ตรงกับ id ที่ส่งเข้ามาไม่เจอ<br/>
-    ```
-    {
-      "statusCode": 404,
-      "response": {
-          "message": "book not found",
-          "id": 100
-      },
-      "timestamp": "2025-02-07T08:22:55.360Z"
-    }
-    ```
-    - **Http status code**: 400<br/>
-    กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ที่มี format ผิด<br/>
-    ```
-    {
-      "statusCode": 400,
-      "response": {
-          "message": "Invalid Payload",
-          "error": "Bad Request",
-          "statusCode": 400
-      },
-      "timestamp": "2025-02-07T08:24:09.467Z"
-    }
-    ```
-    - **Http status code**: 500<br/>
-      กรณีที่ส่ง operator remove เข้ามาแล้ว remaining ของ book ใน database มีน้อยกว่า<br/>
-    ```
-    {
-      "statusCode": 500,
-      "response": {
-          "message": "The book is not enough"
-      },
-      "timestamp": "2025-02-07T08:21:12.127Z"
-    }
-    ```
+  - **Http status code**: 200<br/>
+  กรณีที่ update เสร็จสิ้นจะ response ข้อมูล book ที่ถูก update ออกมา<br/>
+  ```
+  {
+      "title": "mockTitle9",
+      "genre": "mockGenre2",
+      "author": "mockA2",
+      "publicationYear": "1999",
+      "price": 200,
+      "remaining": 1,
+      "id": 7
+  }
+  ```
+  - **Http status code**: 404<br/>
+  กรณีที่หา book ที่ตรงกับ id ที่ส่งเข้ามาไม่เจอ<br/>
+  ```
+  {
+    "statusCode": 404,
+    "response": {
+        "message": "book not found",
+        "id": 100
+    },
+    "timestamp": "2025-02-07T08:22:55.360Z"
+  }
+  ```
+  - **Http status code**: 400<br/>
+  กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ที่มี format ผิด<br/>
+  ```
+  {
+    "statusCode": 400,
+    "response": {
+        "message": "Invalid Payload",
+        "error": "Bad Request",
+        "statusCode": 400
+    },
+    "timestamp": "2025-02-07T08:24:09.467Z"
+  }
+  ```
+  - **Http status code**: 500<br/>
+    กรณีที่ส่ง operator remove เข้ามาแล้ว remaining ของ book ใน database มีน้อยกว่า<br/>
+  ```
+  {
+    "statusCode": 500,
+    "response": {
+        "message": "The book is not enough"
+    },
+    "timestamp": "2025-02-07T08:21:12.127Z"
+  }
+  ```
 
 ## Search Book API
   api เส้นนี้มีไว้ค้นหา book ที่มีอยู่แล้วใน database
