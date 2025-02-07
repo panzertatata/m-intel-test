@@ -14,7 +14,8 @@ import {
   GetBookDto,
   UpdateBookDto,
 } from 'src/controller/book.controller.validator';
-import { Operator } from 'src/enum/operator.enum';
+import { FindingOperator } from 'src/enum/findingOperator.enum';
+import { UpdateRemainingOperator } from 'src/enum/updateRemainingOperator.enum';
 
 @Injectable()
 export class BookService {
@@ -23,25 +24,28 @@ export class BookService {
     private bookRepository: Repository<Book>,
   ) {}
 
-  private _transformOperator(operator, value: string | number) {
+  private _transformOperator(
+    operator: FindingOperator,
+    value: string | number,
+  ) {
     switch (operator) {
-      case Operator.Exact: {
+      case FindingOperator.Exact: {
         return value.toString();
       }
-      case Operator.Partial: {
+      case FindingOperator.Partial: {
         return Like(`%${value.toString()}%`);
       }
-      case Operator.Gte: {
+      case FindingOperator.Gte: {
         return MoreThanOrEqual(Number(value));
       }
-      case Operator.Lte: {
+      case FindingOperator.Lte: {
         return LessThanOrEqual(Number(value));
       }
-      case Operator.Range: {
+      case FindingOperator.Range: {
         if (typeof value !== 'string') {
           throw new HttpException(
             {
-              message: `operator '${Operator.Range}' support only <number>-<number> format. for Example: 3-8`,
+              message: `operator '${FindingOperator.Range}' support only <number>-<number> format. for Example: 3-8`,
             },
             HttpStatus.BAD_REQUEST,
           );
@@ -53,6 +57,41 @@ export class BookService {
         throw new HttpException(
           {
             message: `operator '${operator}' has not been implement.`,
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+    }
+  }
+
+  private _calRemaining(
+    remain: number,
+    newValue: number,
+    method: UpdateRemainingOperator,
+  ) {
+    switch (method) {
+      case UpdateRemainingOperator.Add: {
+        return remain + newValue;
+      }
+      case UpdateRemainingOperator.Remove: {
+        newValue = remain - newValue;
+        if (newValue < 0) {
+          throw new HttpException(
+            {
+              message: `The book is not enough`,
+            },
+            HttpStatus.BAD_REQUEST,
+          );
+        }
+        return newValue;
+      }
+      case UpdateRemainingOperator.Replace: {
+        return newValue;
+      }
+      default: {
+        throw new HttpException(
+          {
+            message: `update 'remaining' method has not been implement`,
           },
           HttpStatus.BAD_REQUEST,
         );
@@ -131,8 +170,21 @@ export class BookService {
         HttpStatus.NOT_FOUND,
       );
     }
-    await this.bookRepository.update(storedBook.id, book);
-    return storedBook;
+
+    const updatedBook = {
+      ...storedBook,
+      ...book,
+      ...(book.remaining && {
+        remaining: this._calRemaining(
+          storedBook.remaining,
+          book.remaining.value,
+          book.remaining.operator,
+        ),
+      }),
+    };
+
+    await this.bookRepository.update(storedBook.id, updatedBook);
+    return updatedBook;
   }
 
   async remove(params: DeleteBookDto): Promise<void> {

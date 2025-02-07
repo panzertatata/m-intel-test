@@ -1,4 +1,4 @@
-export enum Operator {
+export enum FindingOperator {
   Exact = 'exact',
   Partial = 'partial',
   Range = 'range',

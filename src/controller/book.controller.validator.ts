@@ -1,4 +1,5 @@
-import { Operator } from 'src/enum/operator.enum';
+import { FindingOperator } from 'src/enum/findingOperator.enum';
+import { UpdateRemainingOperator } from 'src/enum/updateRemainingOperator.enum';
 import { z } from 'zod';
 
 export const createBookSchema = z.array(
@@ -20,7 +21,16 @@ export const updateBookSchema = z.object({
   price: z.number().gte(0).optional(),
   author: z.string().optional(),
   publicationYear: z.string().optional(),
-  remaining: z.number().gte(0).optional(),
+  remaining: z
+    .object({
+      value: z.number().gte(0).optional(),
+      operator: z.enum([
+        UpdateRemainingOperator.Add,
+        UpdateRemainingOperator.Replace,
+        UpdateRemainingOperator.Remove,
+      ]),
+    })
+    .optional(),
 });
 export type UpdateBookDto = z.infer<typeof updateBookSchema>;
 
@@ -29,29 +39,29 @@ export const getBookSchema = z.object({
   title: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   genre: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   author: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   price: z
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
@@ -59,10 +69,10 @@ export const getBookSchema = z.object({
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
@@ -70,10 +80,10 @@ export const getBookSchema = z.object({
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
@@ -85,29 +95,29 @@ export const deleteBookSchema = z.object({
   title: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   genre: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   author: z
     .object({
       value: z.string(),
-      operator: z.enum([Operator.Exact, Operator.Partial]),
+      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
     })
     .optional(),
   price: z
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
@@ -115,10 +125,10 @@ export const deleteBookSchema = z.object({
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
@@ -126,10 +136,10 @@ export const deleteBookSchema = z.object({
     .object({
       value: z.string(),
       operator: z.enum([
-        Operator.Exact,
-        Operator.Lte,
-        Operator.Gte,
-        Operator.Range,
+        FindingOperator.Exact,
+        FindingOperator.Lte,
+        FindingOperator.Gte,
+        FindingOperator.Range,
       ]),
     })
     .optional(),
