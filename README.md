@@ -95,15 +95,14 @@
   }
   ```
   operator ที่ support มี 'add' , 'remove' , 'replace'<br/>
-    - การ add เป็นการเพิ่มจากเดิม<br/>
-    - การ remove เป็นการลบจากเดิม<br/>
+  - การ add เป็นการเพิ่มจากเดิม<br/>
+  - การ remove เป็นการลบจากเดิม<br/>
+  - การ replace เป็นการแทนที่ของเก่า<br/>
   >**NOTE**: หาก remove แล้ว remaining เหลือน้อยกว่า 0 จะ error บอกว่า book ไม่พอ
   >
-    - การ replace เป็นการแทนที่ของเก่า<br/>
-
   **Example Response**:<br/>
     - **Http status code**: 200<br/>
-    กรณีที่ update เสร็จสิ้นจะ response ข้อมูล book ที่ถูก update ออกมา
+    กรณีที่ update เสร็จสิ้นจะ response ข้อมูล book ที่ถูก update ออกมา<br/>
     ```
     {
         "title": "mockTitle9",
@@ -116,7 +115,7 @@
     }
     ```
     - **Http status code**: 404<br/>
-    กรณีที่หา book ที่ตรงกับ id ที่ส่งเข้ามาไม่เจอ
+    กรณีที่หา book ที่ตรงกับ id ที่ส่งเข้ามาไม่เจอ<br/>
     ```
     {
       "statusCode": 404,
@@ -128,7 +127,7 @@
     }
     ```
     - **Http status code**: 400<br/>
-    กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ที่มี format ผิด
+    กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ที่มี format ผิด<br/>
     ```
     {
       "statusCode": 400,
@@ -141,7 +140,7 @@
     }
     ```
     - **Http status code**: 500<br/>
-      กรณีที่ส่ง operator remove เข้ามาแล้ว remaining ของ book ใน database มีน้อยกว่า
+      กรณีที่ส่ง operator remove เข้ามาแล้ว remaining ของ book ใน database มีน้อยกว่า<br/>
     ```
     {
       "statusCode": 500,
@@ -185,7 +184,7 @@
 
   **Example Response**:<br/>
     - **Http status code**: 200<br/>
-    กรณีที่หา book เจอ
+    กรณีที่หา book เจอ<br/>
     ```
     [
       {
@@ -199,12 +198,12 @@
       }
     ]
     ```
-    กรณีที่หา book ไม่เจอ
+    กรณีที่หา book ไม่เจอ<br/>
     ```
     []
     ```
     - **Http status code**: 400<br/>
-    กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ผิด format 
+    กรณีที่ส่ง operator เข้ามาผิดหรือกรณีที่ส่ง body ผิด format<br/> 
     ```
     {
       "statusCode": 400,
