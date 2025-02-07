@@ -92,56 +92,5 @@ export type GetBookDto = z.infer<typeof getBookSchema>;
 
 export const deleteBookSchema = z.object({
   id: z.number().optional(),
-  title: z
-    .object({
-      value: z.string(),
-      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
-    })
-    .optional(),
-  genre: z
-    .object({
-      value: z.string(),
-      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
-    })
-    .optional(),
-  author: z
-    .object({
-      value: z.string(),
-      operator: z.enum([FindingOperator.Exact, FindingOperator.Partial]),
-    })
-    .optional(),
-  price: z
-    .object({
-      value: z.string(),
-      operator: z.enum([
-        FindingOperator.Exact,
-        FindingOperator.Lte,
-        FindingOperator.Gte,
-        FindingOperator.Range,
-      ]),
-    })
-    .optional(),
-  publicationYear: z
-    .object({
-      value: z.string(),
-      operator: z.enum([
-        FindingOperator.Exact,
-        FindingOperator.Lte,
-        FindingOperator.Gte,
-        FindingOperator.Range,
-      ]),
-    })
-    .optional(),
-  remaining: z
-    .object({
-      value: z.string(),
-      operator: z.enum([
-        FindingOperator.Exact,
-        FindingOperator.Lte,
-        FindingOperator.Gte,
-        FindingOperator.Range,
-      ]),
-    })
-    .optional(),
 });
 export type DeleteBookDto = z.infer<typeof deleteBookSchema>;

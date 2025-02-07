@@ -80,7 +80,7 @@ export class BookService {
             {
               message: `The book is not enough`,
             },
-            HttpStatus.BAD_REQUEST,
+            HttpStatus.INTERNAL_SERVER_ERROR,
           );
         }
         return newValue;
@@ -187,7 +187,7 @@ export class BookService {
     return updatedBook;
   }
 
-  async remove(params: DeleteBookDto): Promise<void> {
+  async remove(params: DeleteBookDto) {
     const storedBook = await this.findOneById(params.id);
     if (!storedBook) {
       throw new HttpException(
@@ -198,6 +198,6 @@ export class BookService {
         HttpStatus.NOT_FOUND,
       );
     }
-    await this.bookRepository.delete(params.id);
+    return await this.bookRepository.delete(params.id);
   }
 }

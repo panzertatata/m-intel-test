@@ -13,6 +13,7 @@ import {
   CreateBookDto,
   createBookSchema,
   DeleteBookDto,
+  deleteBookSchema,
   GetBookDto,
   getBookSchema,
   UpdateBookDto,
@@ -42,6 +43,7 @@ export class BookController {
   }
 
   @Delete()
+  @UsePipes(new ZodValidationPipe(deleteBookSchema))
   async delete(@Body() body: DeleteBookDto) {
     return await this.bookService.remove(body);
   }
