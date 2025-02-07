@@ -1,7 +1,7 @@
 # API Documentation
 ## Create Book API
   api เส้นนี้มีไว้สำหรับการสร้าง book ลงใน database ซึ่งจะมีการเช็คว่าข้อมูลหนังสือนั้นเคยมีอยู่ในระบบหรือไม่โดยการเช็ค title, genre,publicationYear, author ถ้ามีจะทำการโชว์ error แต่ถ้าไม่มีก็สามารถสร้างได้<br/>
-  >**Note**: หากจะเพิ่มหนังสือชนิดเดิมใช้เป็นการ update remaining แทน>
+  >
 **Method**: GET<br/>
 **Path**: /book<br/>
 **Request parameter example**:<br/>
